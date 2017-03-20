@@ -6,7 +6,6 @@ import java.util.List;
 public class Teacher extends Human {
     private int numberOfStudents;
     private String university;
-    private int course;
 
     public Teacher(String name, int age, int numberOfStudents) {
         super(name, age);
@@ -22,10 +21,6 @@ public class Teacher extends Human {
 
     public String getUniversity() {
         return university;
-    }
-
-    public int getCourse() {
-        return course;
     }
 
     public void setUniversity(String university) {
