@@ -32,7 +32,9 @@ public class Human {
         return bloodGroup;
     }
 
-    public Human() {
+    public Human(String name, int age) {
+        this.name = name;
+        this.age = age;
         this.id = nextId;
         nextId++;
     }
@@ -58,11 +60,10 @@ public class Human {
     }
 
     public void live() {
-            fight();
+
     }
 
-    public void fight() {
-    }
+
 
     public int getId() {
         return id;
