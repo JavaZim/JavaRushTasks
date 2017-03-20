@@ -11,4 +11,9 @@ public class Soldier extends Human{
 
     public void fight() {
     }
+
+    @Override
+    public void live() {
+        fight();
+    }
 }
