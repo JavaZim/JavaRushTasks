@@ -43,6 +43,10 @@ public class Human implements Alive{
         return age;
     }
 
+    public String getPosition(){
+        return "Человек";
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -78,5 +82,9 @@ public class Human implements Alive{
 
     public void removeChild(Human child){
         children.remove(child);
+    }
+
+    public void printData(){
+        System.out.println(this.getPosition() + ": " + this.name);
     }
 }
