@@ -4,4 +4,10 @@ public class Truck extends Car{
     public Truck(int numberOfPassengers) {
         super(numberOfPassengers);
     }
+
+    public int getMaxSpeed(){
+        return MAX_TRUCK_SPEED;
+    }
+
+    public static final int MAX_TRUCK_SPEED = 80;
 }
