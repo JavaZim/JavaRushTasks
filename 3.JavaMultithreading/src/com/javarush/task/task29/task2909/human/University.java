@@ -10,18 +10,48 @@ public class University {
         this.age = age;
     }
 
-    public Student getStudentWithAverageGrade() {
-        //TODO:
+    public Student getStudentWithAverageGrade(double averageGrade) {
+
+        for (Student student :students) {
+            if(student.getAverageGrade() == averageGrade){
+                return student;
+            }
+        }
+        
         return null;
     }
 
-    public Student getStudentWithMaxAverageGrade(double averageGrade) {
-        //TODO:
-        return null;
+    public Student getStudentWithMaxAverageGrade() {
+
+        Student current = null;
+        for (Student student :students) {
+            if(current == null){
+                current = student;
+            }
+
+            if(current.getAverageGrade() < student.getAverageGrade()){
+                current = student;
+            }
+        }
+        return current;
     }
 
-    public void getStudentWithMinAverageGradeAndExpel() {
-        //TODO:
+    public Student getStudentWithMinAverageGrade() {
+        Student current = null;
+        for (Student student :students) {
+            if(current == null){
+                current = student;
+            }
+
+            if(current.getAverageGrade() > student.getAverageGrade()){
+                current = student;
+            }
+        }
+        return current;
+    }
+
+    public void expel(Student student){
+        students.remove(student);
     }
 
     public List<Student> getStudents() {
