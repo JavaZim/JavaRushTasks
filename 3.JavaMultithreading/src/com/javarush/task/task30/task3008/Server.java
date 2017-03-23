@@ -3,6 +3,8 @@ package com.javarush.task.task30.task3008;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Server {
 
@@ -10,7 +12,7 @@ public class Server {
 
         int port = ConsoleHelper.readInt();
 
-        try (ServerSocket serverSocket = new ServerSocket(port)){
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Сервер запущен");
             while (true) {
                 Socket socket = serverSocket.accept();
@@ -25,6 +27,18 @@ public class Server {
 
     }
 
+    public static void sendBroadcastMessage(Message message) {
+        try {
+            for (Map.Entry<String, Connection> entry : connectionMap.entrySet()) {
+                entry.getValue().send(message);
+            }
+        } catch (IOException e) {
+            ConsoleHelper.writeMessage("Can't sent message.");
+        }
+
+
+    }
+
     private static class Handler extends Thread {
 
         public Handler(Socket socket) {
@@ -34,4 +48,6 @@ public class Server {
         private Socket socket;
     }
 
+
+    private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
 }
