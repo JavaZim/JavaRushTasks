@@ -16,12 +16,13 @@ public class Solution {
             try {
                 ifLockIsFree();
             } catch (Exception e) {
+
+            } finally {
                 lock.unlock();
             }
 
         } else {
             ifLockIsBusy();
-
         }
         //implement logic here, use the lock field
     }
