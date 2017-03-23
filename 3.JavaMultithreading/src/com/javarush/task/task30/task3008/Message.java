@@ -1,7 +1,27 @@
 package com.javarush.task.task30.task3008;
 
-/**
- * Created by jdk on 23.03.2017.
- */
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable{
+
+    public Message(MessageType type) {
+        this.type = type;
+        this.data = null;
+    }
+
+    public Message(MessageType type, String data) {
+        this.type = type;
+        this.data = data;
+    }
+
+    public MessageType getType() {
+        return type;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    private final MessageType type;
+    private final String data;
 }
