@@ -68,6 +68,18 @@ public class Server {
                 if(!entry.getKey().equals(userName)){
                     Message message = new Message(MessageType.USER_ADDED, entry.getKey());
                     connection.send(message);
+                } else {
+                    System.out.println("Error");
+                }
+            }
+        }
+
+        private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException{
+            while (true){
+                Message message = connection.receive();
+                if(message.getType() == MessageType.TEXT){
+                    Message confMessage = new Message(MessageType.TEXT, String.format("%s: %s", userName, message.getData()));
+                    sendBroadcastMessage(confMessage);
                 }
             }
         }
