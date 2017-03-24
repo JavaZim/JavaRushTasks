@@ -63,6 +63,15 @@ public class Server {
 
         }
 
+        private void sendListOfUsers(Connection connection, String userName)throws IOException{
+            for (Map.Entry<String, Connection> entry :connectionMap.entrySet()) {
+                if(!entry.getKey().equals(userName)){
+                    Message message = new Message(MessageType.USER_ADDED, entry.getKey());
+                    connection.send(message);
+                }
+            }
+        }
+
         private Socket socket;
     }
 
