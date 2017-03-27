@@ -20,19 +20,19 @@ public class Client {
         return ConsoleHelper.readInt();
     }
 
-    protected String getUserName(){
+    protected String getUserName() {
         return ConsoleHelper.readString();
     }
 
-    protected boolean shouldSendTextFromConsole(){
+    protected boolean shouldSendTextFromConsole() {
         return true;
     }
 
-    protected SocketThread getSocketThread(){
+    protected SocketThread getSocketThread() {
         return new SocketThread();
     }
 
-    protected void sendTextMessage(String text){
+    protected void sendTextMessage(String text) {
         try {
             connection.send(new Message(MessageType.TEXT, text));
         } catch (IOException e) {
@@ -47,43 +47,61 @@ public class Client {
         socketThread.setDaemon(true);
         socketThread.start();
 
-        try{
-            synchronized (this){
+        try {
+            synchronized (this) {
                 wait();
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             ConsoleHelper.writeMessage("Error Client.run()");
             System.exit(1);
         }
 
-        if(clientConnected){
+        if (clientConnected) {
             ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду ‘exit’");
-            while(clientConnected){
+            while (clientConnected) {
                 String message = ConsoleHelper.readString();
-                if(message.equalsIgnoreCase("exit")){
+                if (message.equalsIgnoreCase("exit")) {
                     break;
                 } else {
-                    if(shouldSendTextFromConsole()){
+                    if (shouldSendTextFromConsole()) {
                         sendTextMessage(message);
                     }
                 }
 
             }
 
-        }else {
+        } else {
             ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
         }
 
     }
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
         Client client = new Client();
         client.run();
     }
 
 
-
     public class SocketThread extends Thread {
+
+        protected void processIncomingMessage(String message) {
+            ConsoleHelper.writeMessage(message);
+        }
+
+        protected void informAboutAddingNewUser(String userName) {
+            ConsoleHelper.writeMessage("Connected " + userName);
+        }
+
+        protected void informAboutDeletingNewUser(String userName) {
+            ConsoleHelper.writeMessage(userName + " left");
+        }
+
+        protected void notifyConnectionStatusChanged(boolean clientConnected) {
+            synchronized (Client.this){
+                Client.this.clientConnected = clientConnected;
+                Client.this.notify();
+            }
+        }
 
     }
 
