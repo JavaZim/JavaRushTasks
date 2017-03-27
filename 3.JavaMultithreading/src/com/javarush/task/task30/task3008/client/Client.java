@@ -137,7 +137,11 @@ public class Client {
         @Override
         public void run() {
             try {
-                Socket socket = new Socket(getServerAddress(), getServerPort());
+
+                String serverAddress = getServerAddress();
+                int port = getServerPort();
+
+                Socket socket = new Socket(serverAddress, port);
                 Client.this.connection = new Connection(socket);
 
                 clientHandshake();
