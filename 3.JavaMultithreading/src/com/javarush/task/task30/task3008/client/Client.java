@@ -8,9 +8,6 @@ import com.javarush.task.task30.task3008.MessageType;
 import java.io.IOException;
 import java.net.Socket;
 
-/**
- * Created by jdk on 24.03.2017.
- */
 public class Client {
 
     protected String getServerAddress() {
