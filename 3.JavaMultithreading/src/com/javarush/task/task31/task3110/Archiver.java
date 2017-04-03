@@ -8,9 +8,6 @@ import java.nio.file.Paths;
 public class Archiver {
     public static void main(String[] args) throws IOException {
 
-        FileManager manager = new FileManager(Paths.get("D:\\source"));
-
-
         Operation operation = null;
         do {
             try {
