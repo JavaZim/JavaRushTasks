@@ -18,9 +18,15 @@ public class CookedOrderEventDataRow implements EventDataRow{
 
     }
 
+    @Override
+    public EventType getType() {
+        return EventType.COOKED_ORDER;
+    }
+
     private String tabletName;
     private String cookName;
     private int cookingTimeSeconds;
     private List<Dish> cookingDishs;
     private Date currentDate;
+
 }

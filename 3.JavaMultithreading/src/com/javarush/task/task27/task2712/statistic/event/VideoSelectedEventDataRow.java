@@ -14,6 +14,11 @@ public class VideoSelectedEventDataRow implements EventDataRow{
         currentDate = new Date();
     }
 
+    @Override
+    public EventType getType() {
+        return EventType.SELECTED_VIDEOS;
+    }
+
     private List<Advertisement> optimalVideoSet;
     private long amount;
     private int totalDuration;

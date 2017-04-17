@@ -2,6 +2,9 @@ package com.javarush.task.task27.task2712.ad;
 
 
 import com.javarush.task.task27.task2712.ConsoleHelper;
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
+import com.javarush.task.task27.task2712.statistic.event.NoAvailableVideoEventDataRow;
+import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,6 +47,7 @@ public class AdvertisementManager {
         int totalTime = timeSeconds;
         getProvePermutation(totalTime, videosStorage, storageSize, resultVideoList);
         if (resultVideoList.isEmpty()) {
+            StatisticManager.getInstance().register(new NoAvailableVideoEventDataRow(timeSeconds));
             throw new NoVideoAvailableException();
         }
         Collections.sort(resultVideoList, new Comparator<Advertisement>() {
@@ -55,11 +59,25 @@ public class AdvertisementManager {
                 return (int) result;
             }
         });
-        
+
+
+        int totalDuration = 0;
+        int totalAmount = 0;
         for (Advertisement x : resultVideoList) {
+            totalAmount += x.getAmountPerOneDisplaying();
+            totalDuration += x.getDuration();
+
+        }
+
+        StatisticManager.getInstance().register(new VideoSelectedEventDataRow(resultVideoList, totalAmount, totalDuration));
+
+        for (Advertisement x : resultVideoList) {
+            totalAmount += x.getAmountPerOneDisplaying();
+            totalDuration += x.getDuration();
             ConsoleHelper.writeMessage(x.getName() + " is displaying... " + x.getAmountPerOneDisplaying() + ", " + x.getAmountPerOneDisplaying() * 1000 / x.getDuration());
             x.revalidate();
         }
+
     }
 
     private final AdvertisementStorage storage = AdvertisementStorage.getInstance();

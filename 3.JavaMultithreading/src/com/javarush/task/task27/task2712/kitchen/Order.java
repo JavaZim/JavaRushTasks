@@ -29,6 +29,10 @@ public class Order {
         return dishes.isEmpty();
     }
 
+    public List<Dish> getDishes() {
+        return dishes;
+    }
+
     protected List<Dish> dishes = ConsoleHelper.getAllDishesForOrder();
     private final Tablet tablet;
 }
