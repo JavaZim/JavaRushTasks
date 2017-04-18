@@ -8,7 +8,7 @@ public class Advertisement {
         this.initialAmount = initialAmount;
         this.hits = hits;
         this.duration = duration;
-        this.amountPerOneDisplaying = initialAmount/hits;
+        this.amountPerOneDisplaying = Math.round(initialAmount/(double)hits);
     }
 
     public void revalidate(){

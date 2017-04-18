@@ -30,7 +30,7 @@ public class StatisticManager {
             Date date = dateToStringMidnight(event.getDate());
 
             if (profit.containsKey(date)) {
-                profit.put(date, profit.get(event.getDate()) + event.getAmount() / 100.0);
+                profit.put(date, profit.get(date) + event.getAmount() / 100.0);
             } else {
                 profit.put(date, event.getAmount() / 100.0);
             }
