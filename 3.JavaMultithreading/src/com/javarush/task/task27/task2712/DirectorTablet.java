@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class DirectorTablet {
 
@@ -13,11 +14,12 @@ public class DirectorTablet {
         Map<Date, Double> map = StatisticManager.getInstance().collectInformationAboutAdvertisement();
         double totalAmount = 0.0;
         for (Map.Entry<Date, Double> entry : map.entrySet()) {
-            ConsoleHelper.writeMessage(String.format("$s - %.2f", format.format(entry.getKey()), entry.getValue()));
+            double value = entry.getValue();
+            ConsoleHelper.writeMessage(String.format(Locale.ENGLISH, "%s - %.2f", format.format(entry.getKey()), value));
             totalAmount += entry.getValue();
         }
 
-        ConsoleHelper.writeMessage(String.format("Total - %.2f", totalAmount));
+        ConsoleHelper.writeMessage(String.format(Locale.ENGLISH, "Total - %.2f", totalAmount));
     }
 
     public void printCookWorkloading(){
@@ -27,7 +29,7 @@ public class DirectorTablet {
             ConsoleHelper.writeMessage(format.format(dateMapEntry.getKey()));
             for (Map.Entry<String, Integer> entry : dateMapEntry.getValue().entrySet()) {
                 if(entry.getValue() != 0){
-                    ConsoleHelper.writeMessage(String.format("%s - %d min", entry.getKey(), entry.getValue()));
+                    ConsoleHelper.writeMessage(String.format(Locale.ENGLISH, "%s - %d min", entry.getKey(), entry.getValue()/60));
                 }
             }
             ConsoleHelper.writeMessage("");

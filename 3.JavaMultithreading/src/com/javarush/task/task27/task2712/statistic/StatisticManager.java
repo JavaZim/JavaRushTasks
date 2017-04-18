@@ -46,18 +46,17 @@ public class StatisticManager {
 
         for (EventDataRow entry : eventDataCook) {
             CookedOrderEventDataRow event = (CookedOrderEventDataRow) entry;
-            if (workTimeCooks.containsKey(event.getDate())) {
-                if (workTimeCooks.get(event.getDate()).containsKey(event.getCookName())) {
-                    workTimeCooks.get(event.getDate()).put(event.getCookName(), workTimeCooks.get(event.getDate()).get(event.getCookName()) + event.getTime());
+            Date date = dateToStringMidnight(event.getDate());
+            if (workTimeCooks.containsKey(date)) {
+                if (workTimeCooks.get(date).containsKey(event.getCookName())) {
+                    workTimeCooks.get(date).put(event.getCookName(), workTimeCooks.get(date).get(event.getCookName()) + event.getTime());
                 } else {
-                    Map<String, Integer> dayWorksTime = new HashMap<>();
-                    dayWorksTime.put(event.getCookName(), event.getTime());
-                    workTimeCooks.put(event.getDate(), dayWorksTime);
+                    workTimeCooks.get(date).put(event.getCookName(), event.getTime());
                 }
             } else {
-                Map<String, Integer> dayWorksTime = new HashMap<>();
+                Map<String, Integer> dayWorksTime = new TreeMap<>();
                 dayWorksTime.put(event.getCookName(), event.getTime());
-                workTimeCooks.put(event.getDate(), dayWorksTime);
+                workTimeCooks.put(date, dayWorksTime);
             }
         }
 
@@ -73,6 +72,45 @@ public class StatisticManager {
             for (EventType event : EventType.values()) {
                 storage.put(event, new ArrayList<>());
             }
+
+             /*
+            List<Advertisement> firstList = new ArrayList<>();
+            List<Advertisement> seconftList = new ArrayList<>();
+            List<Advertisement> thirdtList = new ArrayList<>();
+            firstList.add(AdvertisementStorage.getInstance().list().get(0));
+            seconftList.add(AdvertisementStorage.getInstance().list().get(0));
+            seconftList.add(AdvertisementStorage.getInstance().list().get(1));
+            thirdtList.add(AdvertisementStorage.getInstance().list().get(0));
+            thirdtList.add(AdvertisementStorage.getInstance().list().get(2));
+            thirdtList.add(AdvertisementStorage.getInstance().list().get(1));
+
+
+            storage.get(EventType.SELECTED_VIDEOS).add(new VideoSelectedEventDataRow(firstList, 5000, 180, new Date(1000, 04, 15)));
+            storage.get(EventType.SELECTED_VIDEOS).add(new VideoSelectedEventDataRow(seconftList, 5100, 1080, new Date(1000, 04, 15)));
+            storage.get(EventType.SELECTED_VIDEOS).add(new VideoSelectedEventDataRow(thirdtList, 5500, 1680, new Date(1000, 04, 15)));
+
+
+
+            List<Dish> firstList = new ArrayList<>();
+            List<Dish> seconftList = new ArrayList<>();
+            List<Dish> thirdtList = new ArrayList<>();
+            firstList.add(Dish.Fish);
+            seconftList.add(Dish.Steak);
+            seconftList.add(Dish.Soup);
+            thirdtList.add(Dish.Fish);
+            thirdtList.add(Dish.Juice);
+            thirdtList.add(Dish.Steak);
+
+            storage.get(EventType.COOKED_ORDER).add(new CookedOrderEventDataRow("Tablet{number=5}", "NoAmigo", 1500, firstList, new Date(17, 3, 15)));
+            storage.get(EventType.COOKED_ORDER).add(new CookedOrderEventDataRow("Tablet{number=6}", "Karlo", 2700, seconftList, new Date(17, 3, 15)));
+            storage.get(EventType.COOKED_ORDER).add(new CookedOrderEventDataRow("Tablet{number=7}", "Red", 3600, thirdtList, new Date(17, 3, 15)));
+
+            storage.get(EventType.COOKED_ORDER).add(new CookedOrderEventDataRow("Tablet{number=5}", "NoAmigo", 25*60, firstList, new Date(17, 3, 16)));
+            storage.get(EventType.COOKED_ORDER).add(new CookedOrderEventDataRow("Tablet{number=5}", "NoAmigo", 60*60, thirdtList, new Date(17, 3, 16)));
+            storage.get(EventType.COOKED_ORDER).add(new CookedOrderEventDataRow("Tablet{number=6}", "Karlo", 45*60, seconftList, new Date(17, 3, 16)));
+            */
+
+
         }
 
         private void put(EventDataRow data) {

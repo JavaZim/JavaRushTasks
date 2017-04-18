@@ -5,9 +5,9 @@ import com.javarush.task.task27.task2712.kitchen.Dish;
 import java.util.Date;
 import java.util.List;
 
-public class CookedOrderEventDataRow implements EventDataRow{
+public class CookedOrderEventDataRow implements EventDataRow {
 
-    public CookedOrderEventDataRow(String tabletName, String cookName, int cookingTimeSeconds, List<Dish> cookingDishs){
+    public CookedOrderEventDataRow(String tabletName, String cookName, int cookingTimeSeconds, List<Dish> cookingDishs) {
 
         this.tabletName = tabletName;
         this.cookName = cookName;
