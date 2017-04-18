@@ -60,7 +60,6 @@ public class AdvertisementManager {
             }
         });
 
-
         int totalDuration = 0;
         int totalAmount = 0;
         for (Advertisement x : resultVideoList) {

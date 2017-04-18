@@ -16,6 +16,8 @@ public class Advertisement {
             throw new UnsupportedOperationException();
         }
         --hits;
+        initialAmount -= amountPerOneDisplaying;
+        amountPerOneDisplaying = Math.round(initialAmount/(double)hits);
     }
 
     public String getName() {

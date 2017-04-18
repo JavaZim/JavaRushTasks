@@ -5,8 +5,6 @@ import com.javarush.task.task27.task2712.ad.Advertisement;
 import java.util.Date;
 import java.util.List;
 
-;
-
 public class VideoSelectedEventDataRow implements EventDataRow {
 
     public VideoSelectedEventDataRow(List<Advertisement> optimalVideoSet, long amount, int totalDuration) {

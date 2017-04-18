@@ -5,7 +5,6 @@ import java.util.List;
 
 public class AdvertisementStorage {
 
-
     public static AdvertisementStorage getInstance() {
         return ourInstance;
     }

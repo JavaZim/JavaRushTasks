@@ -7,7 +7,7 @@ public class NoAvailableVideoEventDataRow implements EventDataRow{
     public NoAvailableVideoEventDataRow(int totalDuration){
 
         this.totalDuration= totalDuration;
-        currentDate = new Date();
+        this.currentDate = new Date();
 
     }
 

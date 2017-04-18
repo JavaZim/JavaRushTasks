@@ -18,8 +18,8 @@ public class DirectorTablet {
             ConsoleHelper.writeMessage(String.format(Locale.ENGLISH, "%s - %.2f", format.format(entry.getKey()), value));
             totalAmount += entry.getValue();
         }
-
         ConsoleHelper.writeMessage(String.format(Locale.ENGLISH, "Total - %.2f", totalAmount));
+        ConsoleHelper.writeMessage("");
     }
 
     public void printCookWorkloading(){
