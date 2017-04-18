@@ -15,6 +15,12 @@ public class Restaurant {
         tablet.addObserver(amigo);
         amigo.addObserver(new Waiter());
         tablet.createOrder();
+
+        DirectorTablet directorTablet = new DirectorTablet();
+        directorTablet.printActiveVideoSet();
+        directorTablet.printAdvertisementProfit();
+        directorTablet.printArchivedVideoSet();
+        directorTablet.printCookWorkloading();
     }
 
 }

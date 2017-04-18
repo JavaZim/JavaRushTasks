@@ -43,7 +43,7 @@ public class AdvertisementManager {
     public void processVideos() {
         List<Advertisement> videosStorage = storage.list();
         int storageSize = videosStorage.size();
-        ArrayList<Advertisement> resultVideoList = new ArrayList<>(); // итоговый массив к показу
+        ArrayList<Advertisement> resultVideoList = new ArrayList<>();
         int totalTime = timeSeconds;
         getProvePermutation(totalTime, videosStorage, storageSize, resultVideoList);
         if (resultVideoList.isEmpty()) {
